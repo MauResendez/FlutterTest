@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:test/pages/login.dart';
 import 'package:test/pages/register.dart';
 
 class Landing extends StatelessWidget {
@@ -28,7 +29,9 @@ class Landing extends StatelessWidget {
                         minimumSize: const Size.fromHeight(48),
                         textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                      },
                       child: const Text('Login'),
                     ),
                   ),

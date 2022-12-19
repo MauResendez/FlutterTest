@@ -3,24 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test/auth.dart';
 
-class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<Login> createState() => _LoginState();
 }
 
-class _RegisterState extends State<Register> {
+class _LoginState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool visible = false;
   bool error = false;
 
-  Future<void> register() async {
+  Future<void> login() async {
     try {
-      await Auth().register(email: _emailController.text, password: _passwordController.text).then((value) => {
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
-      });
+      await Auth()
+        .login(email: _emailController.text, password: _passwordController.text)
+        .then((value) => {
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+        });
     } on FirebaseException catch (e) {
       setState(() {
         error = true;
@@ -32,7 +34,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Register")),
+      appBar: AppBar(title: const Text("Login")),
       body: Container(
         padding: const EdgeInsets.all(32),
         child: Center(
@@ -42,7 +44,7 @@ class _RegisterState extends State<Register> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8),
-                child: Text("Register", style: GoogleFonts.ubuntu(textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.w700))),
+                child: Text("Login", style: GoogleFonts.ubuntu(textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.w700))),
               ),
               Column(
                 children: [
@@ -88,9 +90,9 @@ class _RegisterState extends State<Register> {
                             print(visible);
                           },
                           child: Icon(
-                            visible 
-                            ? Icons.visibility 
-                            : Icons.visibility_off, 
+                            visible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
                             size: 25
                           )
                         ),
@@ -99,14 +101,15 @@ class _RegisterState extends State<Register> {
                   ),
                 ],
               ),
+              
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(48),
                     textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
-                  onPressed: () { register(); },
-                  child: const Text('Register'),
+                  onPressed: () { login(); },
+                  child: const Text('Login'),
                 ),
               ),
             ],
