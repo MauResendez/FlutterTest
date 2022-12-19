@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:test/pages/login.dart';
 import 'package:test/pages/register.dart';
 
 class Landing extends StatelessWidget {
   const Landing({Key? key}) : super(key: key);
 
-  // TextEditingController emailController = TextEditingController();
-  // TextEditingController passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.all(48),
+        padding: const EdgeInsets.all(32),
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,21 +28,19 @@ class Landing extends StatelessWidget {
                         minimumSize: const Size.fromHeight(48),
                         textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)
                       ),
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
-                      },
+                      onPressed: () {},
                       child: const Text('Login'),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(48),
                         textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)
                       ),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Register()));
                       },
                       child: const Text('Register'),
                     ),
