@@ -19,7 +19,7 @@ class _RegisterState extends State<Register> {
   Future<void> register() async {
     try {
       await Auth().register(email: _emailController.text, password: _passwordController.text).then((value) => {
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+        Navigator.pushNamedAndRemoveUntil(context, "/home", (_) => false)
       });
     } on FirebaseException catch (e) {
       setState(() {

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:test/auth.dart';
 import 'package:test/pages/home.dart';
 import 'package:test/pages/landing.dart';
+import 'package:test/pages/login.dart';
+import 'package:test/pages/register.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,18 +25,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       debugShowCheckedModeBanner: false,
-      home: StreamBuilder(
-        stream: Auth().authStateChanges,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            print("Home");
-            return const Home();
-          } else {
-            print("Landing");
-            return const Landing();
-          }
-        },
-      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const Landing(),
+        '/login': (context) => const Login(),
+        '/register': (context) => const Register(),
+        '/home': (context) => const Home(),
+      },
     );
   }
 }

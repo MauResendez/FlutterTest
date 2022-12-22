@@ -18,11 +18,9 @@ class _LoginState extends State<Login> {
 
   Future<void> login() async {
     try {
-      await Auth()
-        .login(email: _emailController.text, password: _passwordController.text)
-        .then((value) => {
-          // Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
-        });
+      await Auth().login(email: _emailController.text, password: _passwordController.text).then((value) => {
+        Navigator.pushNamedAndRemoveUntil(context, "/home", (_) => false)
+      });
     } on FirebaseException catch (e) {
       setState(() {
         error = true;
@@ -101,13 +99,13 @@ class _LoginState extends State<Login> {
                   ),
                 ],
               ),
-              
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(48),
-                    textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+                    textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)
+                  ),
                   onPressed: () { login(); },
                   child: const Text('Login'),
                 ),
